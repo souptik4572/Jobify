@@ -1,0 +1,69 @@
+<%- include('templates/header.ejs') %>
+<div class="auth">
+	<div class="left sign-up"></div>
+	<div class="right blue-grey lighten-5">
+		<div class="container">
+			<div class="row">
+				<p class="title">Register</p>
+				<p class="other-option">Have an account ? <a href="/auth/login">Login</a></p>
+			</div>
+			<div class="row">
+				<form class="col s12" action="/auth/register" method="POST">
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="name" type="text" class="validate" required name="name" />
+							<label for="name">Name</label>
+							<span class="helper-text" data-error="wrong" data-success="right">
+								Enter your name
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input
+								id="email"
+								type="email"
+								class="validate"
+								required
+								name="username"
+							/>
+							<label for="email">Email</label>
+							<span class="helper-text" data-error="wrong" data-success="right">
+								Enter the email
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input
+								id="password"
+								type="password"
+								class="validate"
+								required
+								name="password"
+							/>
+							<label for="password">Password</label>
+							<span class="helper-text" data-error="wrong" data-success="right">
+								Enter the password
+							</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<label>
+								<input id="checkbox" type="checkbox" name="isEmployer" />
+								<span>I am an Employer</span>
+							</label>
+						</div>
+					</div>
+					<div class="row center-align">
+						<button class="btn waves-effect waves-light" type="submit" name="action">
+							Create Account
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<%- include('templates/footer.ejs') %>

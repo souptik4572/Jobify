@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@100&display=swap');
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+.index {
+	width: 100vw;
+	height: 100vh;
+	background-image: url('https://images.pexels.com/photos/845451/pexels-photo-845451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+	background-size: cover;
+	background-position: center;
+	display: grid;
+	place-items: center;
+}
+
+.index-title {
+	width: 100%;
+	display: block;
+	color: white;
+	text-transform: capitalize;
+	text-align: center;
+	font-family: 'Great Vibes', cursive;
+	background-color: rgba(255, 118, 117, 0.7);
+	padding: 20px 40px;
+	margin-bottom: 100px;
+	border-radius: 20px;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.index-title h1 {
+	font-size: 10rem;
+	letter-spacing: 0.3rem;
+	font-weight: 900;
+}
+
+.index-title p {
+	font-family: 'Roboto', sans-serif;
+	font-size: 2.5rem;
+	letter-spacing: 0.3rem;
+	text-transform: capitalize;
+}
+
+.index-options {
+	display: flex;
+	justify-content: center;
+}
+
+.index-options a {
+	margin: 0px 3rem;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+	font-size: 1rem;
+	font-weight: 300;
+}
+
+.auth {
+	width: 100vw;
+	height: 100vh;
+}
+
+.auth .left,
+.auth .right {
+	width: 50%;
+	height: 100%;
+}
+
+.auth .left {
+	background-size: cover;
+	background-position: center;
+}
+
+.auth .left.sign-up {
+	background-image: url('https://images.pexels.com/photos/4065864/pexels-photo-4065864.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+}
+
+.auth .left.login {
+	background-image: url('https://images.pexels.com/photos/4065892/pexels-photo-4065892.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+}
+
+.auth .right {
+	display: grid;
+	place-items: center;
+}
+
+.auth .title {
+	text-align: center;
+	margin: 10px auto;
+	font-weight: 300;
+	font-size: 4rem;
+	letter-spacing: 10px;
+	color: #616161;
+}
+
+.auth .other-option {
+	float: right;
+	font-size: 0.9rem;
+}
+
+.auth .other-option a {
+	text-decoration: underline;
+	transition: 0.3s;
+}
+
+.auth .other-option a:hover {
+	color: #00e676;
+}
+
+.our-navbar .brand-logo {
+	font-family: 'Great Vibes', cursive;
+	font-size: 2.7rem;
+	letter-spacing: 0.3rem;
+	font-weight: 900;
+}
+
+.new-connection {
+	display: grid;
+	place-items: center;
+	text-align: center;
+}
+
+.planType {
+	width: 100px;
+	text-align: center;
+	color: white;
+	padding: 2px 10px;
+	font-size: 0.9rem;
+	border-radius: 10px;
+}
+
+.standard {
+	background-color: #4caf50;
+}
+
+.premium {
+	background-color: #9c27b0;
+}
+
+.platinum {
+	background-color: #9e9e9e;
+}
+
+.card-action {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.card-title {
+	text-transform: capitalize;
+}
+
+.connections .header,
+.allbills .header {
+	margin: 0 auto;
+	text-align: center;
+	padding: 2rem;
+	color: white;
+	margin-bottom: 2rem;
+	background-color: #ffc107;
+	border-bottom-left-radius: 2rem;
+	border-bottom-right-radius: 2rem;
+	overflow: auto;
+	cursor: pointer;
+}
+
+.connections .header h1,
+.allbills .header h1 {
+	margin: 0px;
+	font-size: 3rem;
+	text-transform: capitalize;
+}
+
+.show {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 5rem;
+}
+
+.show .single-connection {
+	background-color: #eceff1;
+	text-align: center;
+	padding: 2rem;
+	border-radius: 2rem;
+}
+
+.page-footer .creators,
+.page-footer h6 {
+	color: white;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	font-size: 1.5rem;
+	font-family: 'Love Ya Like A Sister', cursive;
+	font-weight: bold;
+}
+
+.main {
+	flex: 1 0 auto;
+}
+
+.page-footer h6 {
+	font-size: 0.8rem;
+}
+
+.page-footer .creators p {
+	margin-right: 4rem;
+	margin-left: 4rem;
+	letter-spacing: 0.5rem;
+}
+
+.page-footer-copyright {
+	color: white;
+}
+
+.call-types {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.show-admin {
+	margin: 20px auto;
+}
