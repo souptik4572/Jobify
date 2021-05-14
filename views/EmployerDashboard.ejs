@@ -35,7 +35,7 @@
 					<div class="card-action">
 						<a
 							class="tooltipped btn-floating btn-small waves-effect waves-light cyan"
-							href="/jobs/<%= aJob._id %>/edit"
+							href="/jobs/employer/<%= aJob._id %>/edit"
 							data-position="bottom"
 							data-tooltip="Edit"
 							><i class="material-icons">edit</i></a
@@ -53,7 +53,7 @@
 							data-tooltip="Get Info"
 							><i class="material-icons">info</i></a
 						> -->
-						<form action="/jobs/<%= aJob._id %>?_method=DELETE" method="POST">
+						<form action="/jobs/employer/<%= aJob._id %>?_method=DELETE" method="POST">
 							<button
 								class="
 									tooltipped
@@ -77,7 +77,7 @@
 
 	<div class="fixed-action-btn">
 		<a
-			href="/jobs/new"
+			href="/jobs/employer/new"
 			data-position="left"
 			data-tooltip="Add a new connection"
 			class="tooltipped btn-floating btn-large orange pulse"

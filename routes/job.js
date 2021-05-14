@@ -12,18 +12,18 @@ const {
 	createNewJob,
 } = require('../controllers/jobs');
 
-router.get('/new', isLoggedIn, getNewJobForm);
+router.get('/employer/new', isLoggedIn, getNewJobForm);
 
-router.get('/:id/edit', isLoggedIn, getEditJobForm);
+router.get('/employer/:id/edit', isLoggedIn, getEditJobForm);
 
-router.get('/:id', isLoggedIn, getParticularJob);
+router.get('/employer/:id', isLoggedIn, getParticularJob);
 
-router.put('/:id', editParticularJob);
+router.put('/employer/:id', editParticularJob);
 
-router.delete('/:id', deleteParticularJob);
+router.delete('/employer/:id', deleteParticularJob);
 
-router.get('/', isLoggedIn, getAllJobs);
+router.get('/employer', isLoggedIn, getAllJobs);
 
-router.post('/', createNewJob);
+router.post('/employer', createNewJob);
 
 module.exports = router;

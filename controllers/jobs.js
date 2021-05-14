@@ -39,7 +39,7 @@ const editParticularJob = (req, res) => {
 			console.log('Oops got an error while editing job', error);
 			return;
 		}
-		res.redirect('/jobs');
+		res.redirect('/jobs/employer');
 	});
 };
 
@@ -51,22 +51,24 @@ const deleteParticularJob = (req, res) => {
 			console.log('Oops got an error while deleting a job', error);
 			return;
 		}
-		res.redirect('/jobs');
+		res.redirect('/jobs/employer');
 	});
 };
 
 // Get list of all jobs
 const getAllJobs = (req, res) => {
-	const employer = {
-		id: req.user._id,
-		username: req.user.username,
-	};
+	const employer = req.user.isEmployer
+		? {
+				id: req.user._id,
+				username: req.user.username,
+		  }
+		: {};
 	Job.find({ employer }, (error, jobs) => {
 		if (error) {
 			console.log('Oops got an error while fetching all jobs', error);
 			return;
 		}
-		res.render('EmployerDashboard', { jobs });
+		if (req.user.isEmployer) res.render('EmployerDashboard', { jobs });
 	});
 };
 
@@ -84,7 +86,7 @@ const createNewJob = (req, res) => {
 			console.log('Oops got an error while creating new job', error);
 			return;
 		}
-		res.redirect('/jobs');
+		res.redirect('/jobs/employer');
 	});
 };
 

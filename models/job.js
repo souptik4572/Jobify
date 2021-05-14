@@ -21,7 +21,7 @@ const JobSchema = new mongoose.Schema({
 	},
 	isJobOpen: {
 		type: Boolean,
-		default: false,
+		default: true,
 	},
 	company: {
 		type: String,
