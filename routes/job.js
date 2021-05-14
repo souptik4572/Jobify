@@ -16,7 +16,7 @@ router.get('/:id/edit', isLoggedIn, (req, res) => {
 			console.log('Oops got an error while getting a particular job for edit');
 			return;
 		}
-		res.send(job);
+		res.render('EditJob', { job });
 	});
 });
 
@@ -32,14 +32,15 @@ router.get('/:id', isLoggedIn, (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-	const { job } = req.body;
+	let { job } = req.body;
+	job.isJobOpen = !!job.isJobOpen;
 	const { id } = req.params;
 	Job.findByIdAndUpdate(id, job, (error, job) => {
 		if (error) {
 			console.log('Oops got an error while editing job', error);
 			return;
 		}
-		res.send(job);
+		res.redirect('/jobs');
 	});
 });
 
@@ -50,7 +51,7 @@ router.delete('/:id', (req, res) => {
 			console.log('Oops got an error while deleting a job', error);
 			return;
 		}
-		res.send(job);
+		res.redirect('/jobs');
 	});
 });
 
@@ -75,6 +76,7 @@ router.post('/', (req, res) => {
 		id: _id,
 		username: username,
 	};
+	job.date = new Date();
 	Job.create(job, (error, job) => {
 		if (error) {
 			console.log('Oops got an error while creating new job', error);

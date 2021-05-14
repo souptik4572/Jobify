@@ -1,0 +1,68 @@
+<%- include('templates/header.ejs') %> <%- include('./navbar.ejs') %>
+<div class="new-job">
+	<h1>Edit Job #<%= job._id %></h1>
+	<div class="container">
+		<div class="row">
+			<div class="container">
+				<form class="col s12" action="/jobs/<%= job._id %>?_method=PUT" method="POST">
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">work</i>
+							<input
+								id="job_title"
+								type="text"
+								class="validate"
+								name="job[title]"
+								value="<%= job.title %>"
+							/>
+							<label for="job_title">Title of the Job</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">location_city</i>
+							<input
+								id="job_location"
+								type="text"
+								class="validate"
+								name="job[location]"
+								value="<%= job.location %>"
+							/>
+							<label for="job_location">Location of the Job</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">business</i>
+							<input
+								id="job_company"
+								type="text"
+								class="validate"
+								name="job[company]"
+								value="<%= job.company %>"
+							/>
+							<label for="job_company">Enter company name</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="switch">
+							<label>
+								Job Closed <% let checked = job.isJobOpen ? "checked" : "" %>
+								<input type="checkbox" name="job[isJobOpen]" <%= checked %>
+								/>
+								<span class="lever"></span>
+								Job Open
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<button class="btn waves-effect waves-light" type="submit" name="action">
+							Submit Edited Job
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<%- include('templates/footer.ejs') %>
