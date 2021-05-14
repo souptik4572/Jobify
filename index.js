@@ -51,10 +51,6 @@ app.use((req, res, next) => {
 app.use('/jobs', jobRouter);
 app.use('/auth', authenticationRouter);
 
-app.get('/secret', (req, res) => {
-	res.send('This is the secret route');
-});
-
 app.get('/', (req, res) => {
 	res.sendFile('index.html');
 });

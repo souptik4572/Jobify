@@ -6,7 +6,7 @@ const User = require('../models/user');
 const Job = require('../models/job');
 
 router.get('/new', isLoggedIn, (req, res) => {
-	res.send('Form to create new job comes here');
+	res.render('NewJob');
 });
 
 router.get('/:id/edit', isLoggedIn, (req, res) => {
@@ -55,12 +55,16 @@ router.delete('/:id', (req, res) => {
 });
 
 router.get('/', isLoggedIn, (req, res) => {
-	Job.find({}, (error, jobs) => {
+	const employer = {
+		id: req.user._id,
+		username: req.user.username,
+	};
+	Job.find({ employer }, (error, jobs) => {
 		if (error) {
 			console.log('Oops got an error while fetching all jobs', error);
 			return;
 		}
-		res.send(jobs);
+		res.render('EmployerDashboard', { jobs });
 	});
 });
 
@@ -76,7 +80,7 @@ router.post('/', (req, res) => {
 			console.log('Oops got an error while creating new job', error);
 			return;
 		}
-		res.send(job);
+		res.redirect('/jobs');
 	});
 });
 

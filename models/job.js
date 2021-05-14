@@ -1,13 +1,19 @@
 const mongoose = require('mongoose');
+const shortid = require('shortid');
+const currentDate = new Date();
 
 const JobSchema = new mongoose.Schema({
+	_id: {
+		type: String,
+		default: shortid.generate,
+	},
 	title: {
 		type: String,
 		required: true,
 	},
 	date: {
 		type: Date,
-		default: new Date(),
+		default: Date.now(),
 	},
 	location: {
 		type: String,
@@ -15,6 +21,10 @@ const JobSchema = new mongoose.Schema({
 	},
 	isJobOpen: {
 		type: Boolean,
+		default: true,
+	},
+	company: {
+		type: String,
 		required: true,
 	},
 	employer: {

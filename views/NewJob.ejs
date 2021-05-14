@@ -1,0 +1,49 @@
+<%- include('templates/header.ejs') %> <%- include('./navbar.ejs') %>
+<div class="new-job">
+	<h1>Add New Job</h1>
+	<div class="container">
+		<div class="row">
+			<div class="container">
+				<form class="col s12" action="/jobs" method="POST">
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">work</i>
+							<input id="job_title" type="text" class="validate" name="job[title]" />
+							<label for="job_title">Title of the Job</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">location_city</i>
+							<input
+								id="job_location"
+								type="text"
+								class="validate"
+								name="job[location]"
+							/>
+							<label for="job_location">Location of the Job</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<i class="material-icons prefix">business</i>
+							<input
+								id="job_company"
+								type="text"
+								class="validate"
+								name="job[company]"
+							/>
+							<label for="job_company">Enter company name</label>
+						</div>
+					</div>
+					<div class="row">
+						<button class="btn waves-effect waves-light" type="submit" name="action">
+							Create job
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<%- include('templates/footer.ejs') %>
