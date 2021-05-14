@@ -1,0 +1,61 @@
+<%- include('templates/header.ejs') %> <%- include('./CandidateNavbar.ejs') %>
+<div class="allJobs">
+	<div class="container">
+		<div class="container header pink lighten-2">
+			<h1>Available Jobs</h1>
+		</div>
+		<ul class="collapsible expandable">
+			<% jobs.forEach(aJob => { %>
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">arrow_drop_down_circle</i>
+					<span>Job #<%= aJob._id %></span>
+					<div class="form-actions">
+						<form>
+							<button
+								class="
+									tooltipped
+									btn-floating btn-large
+									waves-effect waves-light
+									btn-small
+									light-green
+								"
+								type="submit"
+								data-position="left"
+								data-tooltip="Accept"
+							>
+								<i class="material-icons">check</i>
+							</button>
+						</form>
+						<form>
+							<button
+								class="
+									tooltipped
+									btn-floating btn-large
+									waves-effect waves-light
+									btn-small
+									red
+									darken-1
+								"
+								type="submit"
+								data-position="right"
+								data-tooltip="Reject"
+							>
+								<i class="material-icons">close</i>
+							</button>
+						</form>
+					</div>
+				</div>
+				<div class="collapsible-body">
+					<p>Role - <%= aJob.title %></p>
+					<p>Location - <%= aJob.location %></p>
+					<p>Company - <%= aJob.company %></p>
+					<p>Posted on - <%= aJob.date %></p>
+					<p>Posted by - <%= aJob.employer.username %></p>
+				</div>
+			</li>
+			<% }) %>
+		</ul>
+	</div>
+</div>
+<%- include('templates/footer.ejs') %>

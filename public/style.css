@@ -148,7 +148,7 @@ body {
 }
 
 .jobs .header,
-.allbills .header {
+.allJobs .header {
 	margin: 0 auto;
 	text-align: center;
 	padding: 2rem;
@@ -161,7 +161,7 @@ body {
 }
 
 .jobs .header h1,
-.allbills .header h1 {
+.allJobs .header h1 {
 	margin: 0px;
 	font-size: 3rem;
 	text-transform: capitalize;
@@ -218,4 +218,23 @@ body {
 
 .show-admin {
 	margin: 20px auto;
+}
+
+.allJobs .collapsible-header {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.allJobs .collapsible-header .form-actions {
+	width: 10%;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.collapsible-header i {
+	margin: 0px;
 }
