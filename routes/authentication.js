@@ -22,7 +22,7 @@ router.get('/login', getLoginForm);
 router.post(
 	'/login',
 	passport.authenticate('local', {
-		successRedirect: '/jobs/employer',
+		successRedirect: '/jobs',
 		failureRedirect: '/auth/login',
 	}),
 	(req, res) => {}

@@ -26,4 +26,8 @@ router.get('/employer', isLoggedIn, getAllJobs);
 
 router.post('/employer', createNewJob);
 
+router.get('/', (req, res) => {
+	if (req.user.isEmployer) res.redirect('/jobs/employer');
+});
+
 module.exports = router;
