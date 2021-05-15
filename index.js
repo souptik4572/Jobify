@@ -13,14 +13,11 @@ const authenticationRouter = require('./routes/authentication');
 
 const url = process.env.DATABASEURL || 'mongodb://localhost:27017/job_portal_db';
 
-mongoose.connect(
-	`mongodb+srv://asta:telephone@cluster0.9fr0a.mongodb.net/job_portal_db?retryWrites=true&w=majority`,
-	{
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-		useFindAndModify: false,
-	}
-);
+mongoose.connect(url, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: false,
+});
 
 const app = express();
 
