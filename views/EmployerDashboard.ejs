@@ -40,7 +40,7 @@
 							data-tooltip="Edit"
 							><i class="material-icons">edit</i></a
 						>
-						<!-- <a
+						<a
 							class="
 								tooltipped
 								btn-floating btn-small
@@ -48,11 +48,11 @@
 								light-green
 								darken-1
 							"
-							href="/jobs/<%= aJob._id %>"
+							href="/jobs/employer/<%= aJob._id %>"
 							data-position="bottom"
 							data-tooltip="Get Info"
 							><i class="material-icons">info</i></a
-						> -->
+						>
 						<form action="/jobs/employer/<%= aJob._id %>?_method=DELETE" method="POST">
 							<button
 								class="

@@ -25,7 +25,7 @@ const getParticularJob = (req, res) => {
 			console.log('Oops got an error while getting a particular job');
 			return;
 		}
-		res.send(job);
+		res.render('ShowJob', { job });
 	});
 };
 
