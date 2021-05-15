@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -11,6 +12,7 @@ const User = require('./models/user');
 const jobRouter = require('./routes/job');
 const authenticationRouter = require('./routes/authentication');
 
+console.log(process.env.DATABASEURL);
 const url = process.env.DATABASEURL || 'mongodb://localhost:27017/job_portal_db';
 
 mongoose.connect(url, {
