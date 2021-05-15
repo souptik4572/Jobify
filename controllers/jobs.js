@@ -20,13 +20,16 @@ const getEditJobForm = (req, res) => {
 // Get details of a particular job
 const getParticularJob = (req, res) => {
 	const { id } = req.params;
-	Job.findById(id, (error, job) => {
-		if (error) {
-			console.log('Oops got an error while getting a particular job');
-			return;
-		}
-		res.render('ShowJob', { job });
-	});
+	Job.findById(id)
+		.populate('candidatesWhoAccepted')
+		.exec((error, job) => {
+			if (error) {
+				console.log('Oops got an error while getting a particular job');
+				return;
+			}
+			console.log(job);
+			res.render('ShowJob', { job });
+		});
 };
 
 // Submit edit form to update job details
