@@ -2,7 +2,13 @@
 <div class="allJobs">
 	<div class="container">
 		<div class="container header pink lighten-2">
+			<% if(fromPage === 'receivedJobs') { %>
 			<h1>Available Jobs</h1>
+			<% } %> <% if(fromPage === 'acceptedJobs') { %>
+			<h1>Your Accepted Jobs</h1>
+			<% } %> <% if(fromPage === 'rejectedJobs') { %>
+			<h1>Your Rejected Jobs</h1>
+			<% } %>
 		</div>
 		<ul class="collapsible expandable">
 			<% jobs.forEach(aJob => { %>
@@ -11,7 +17,8 @@
 					<i class="material-icons">arrow_drop_down_circle</i>
 					<span>Job #<%= aJob._id %></span>
 					<div class="form-actions">
-						<form>
+						<% if(fromPage === 'receivedJobs') { %>
+						<form action="/jobs/candidate/acceptedjobs/<%= aJob._id %>" method="POST">
 							<button
 								class="
 									tooltipped
@@ -27,7 +34,7 @@
 								<i class="material-icons">check</i>
 							</button>
 						</form>
-						<form>
+						<form action="/jobs/candidate/rejectedjobs/<%= aJob._id %>" method="POST">
 							<button
 								class="
 									tooltipped
@@ -44,6 +51,50 @@
 								<i class="material-icons">close</i>
 							</button>
 						</form>
+						<% } %> <% if(fromPage === 'acceptedJobs') { %>
+						<form
+							action="/jobs/candidate/acceptedjobs/<%= aJob._id %>?_method=DELETE"
+							method="POST"
+						>
+							<button
+								class="
+									tooltipped
+									btn-floating btn-large
+									waves-effect waves-light
+									btn-small
+									red
+									darken-1
+									pulse
+								"
+								type="submit"
+								data-position="right"
+								data-tooltip="Remove from accepted list"
+							>
+								<i class="material-icons">undo</i>
+							</button>
+						</form>
+						<% } %> <% if(fromPage === 'rejectedJobs') { %>
+						<form
+							action="/jobs/candidate/rejectedjobs/<%= aJob._id %>?_method=DELETE"
+							method="POST"
+						>
+							<button
+								class="
+									tooltipped
+									btn-floating btn-large
+									waves-effect waves-light
+									btn-small
+									light-green
+									pulse
+								"
+								type="submit"
+								data-position="right"
+								data-tooltip="Remove from rejected list"
+							>
+								<i class="material-icons">undo</i>
+							</button>
+						</form>
+						<% } %>
 					</div>
 				</div>
 				<div class="collapsible-body">

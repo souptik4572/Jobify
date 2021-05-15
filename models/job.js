@@ -34,6 +34,18 @@ const JobSchema = new mongoose.Schema({
 		},
 		username: String,
 	},
+	candidatesWhoAccepted: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+		},
+	],
+	candidatesWhoRejected: [
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User',
+		},
+	],
 });
 
 const Job = mongoose.model('Job', JobSchema);

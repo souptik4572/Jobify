@@ -90,6 +90,126 @@ const createNewJob = (req, res) => {
 	});
 };
 
+// Get all received jobs for a candidate
+const getReceivedJobs = (req, res) => {
+	Job.find({}, (error, jobs) => {
+		if (error) {
+			console.log('Oops got an error while fetching all jobs');
+			return;
+		}
+		const filteredJobs = jobs.filter(
+			(aJob) =>
+				!aJob.candidatesWhoAccepted.includes(req.user._id) &&
+				!aJob.candidatesWhoRejected.includes(req.user._id)
+		);
+		res.render('CandidateDashboard', { jobs: filteredJobs, fromPage: 'receivedJobs' });
+	});
+};
+
+// Get all accepted jobs for a candidate
+const getAcceptedJobs = (req, res) => {
+	Job.find({}, (error, jobs) => {
+		if (error) {
+			console.log('Oops got an error while fetching all jobs');
+			return;
+		}
+		const filteredJobs = jobs.filter((aJob) =>
+			aJob.candidatesWhoAccepted.includes(req.user._id)
+		);
+		res.render('CandidateDashboard', { jobs: filteredJobs, fromPage: 'acceptedJobs' });
+	});
+};
+
+// Mark a received job as accepted job
+const createAcceptedJob = (req, res) => {
+	const { id } = req.params;
+	Job.findById(id, (error, job) => {
+		if (error) {
+			console.log('Oops got an error while fetching a job');
+			return;
+		}
+		job.candidatesWhoAccepted.push(req.user._id);
+		job.save((error, user) => {
+			if (error) {
+				console.log('Oops got an error while saving job');
+				return;
+			}
+			res.redirect('/jobs/candidate/acceptedjobs');
+		});
+	});
+};
+
+// Delete a received job from the accepted job list
+const deleteAcceptedJob = (req, res) => {
+	const { id } = req.params;
+	Job.findById(id, (error, job) => {
+		if (error) {
+			console.log('Oops got an error while fetching a job');
+			return;
+		}
+		job.candidatesWhoAccepted.splice(job.candidatesWhoAccepted.indexOf(req.user._id), 1);
+		job.save((error, user) => {
+			if (error) {
+				console.log('Oops got an error while saving job');
+				return;
+			}
+			res.redirect('/jobs/candidate/receivedjobs');
+		});
+	});
+};
+
+// Get all accepted jobs for a candidate
+const getRejectedJobs = (req, res) => {
+	Job.find({}, (error, jobs) => {
+		if (error) {
+			console.log('Oops got an error while fetching all jobs');
+			return;
+		}
+		const filteredJobs = jobs.filter((aJob) =>
+			aJob.candidatesWhoRejected.includes(req.user._id)
+		);
+		res.render('CandidateDashboard', { jobs: filteredJobs, fromPage: 'rejectedJobs' });
+	});
+};
+
+// Mark a received job as rejected job
+const createRejectedJob = (req, res) => {
+	const { id } = req.params;
+	Job.findById(id, (error, job) => {
+		if (error) {
+			console.log('Oops got an error while fetching all jobs');
+			return;
+		}
+		job.candidatesWhoRejected.push(req.user._id);
+		job.save((error, user) => {
+			if (error) {
+				console.log('Oops got an error while saving user');
+				return;
+			}
+			res.redirect('/jobs/candidate/rejectedjobs');
+		});
+	});
+};
+
+// Delete a received job from the rejected list
+const deleteRejectedJob = (req, res) => {
+	const { id } = req.params;
+	Job.findById(id, (error, job) => {
+		if (error) {
+			console.log('Oops got an error while fetching a job');
+			return;
+		}
+		job.candidatesWhoRejected.splice(job.candidatesWhoRejected.indexOf(req.user._id), 1);
+		job.save((error, user) => {
+			if (error) {
+				console.log('Oops got an error while saving job');
+				return;
+			}
+			res.redirect('/jobs/candidate/receivedjobs');
+		});
+	});
+};
+
 module.exports = {
 	getNewJobForm,
 	getEditJobForm,
@@ -98,4 +218,11 @@ module.exports = {
 	deleteParticularJob,
 	getAllJobs,
 	createNewJob,
+	getReceivedJobs,
+	getAcceptedJobs,
+	createAcceptedJob,
+	deleteAcceptedJob,
+	getRejectedJobs,
+	createRejectedJob,
+	deleteRejectedJob,
 };

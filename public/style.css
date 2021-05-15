@@ -228,11 +228,14 @@ body {
 }
 
 .allJobs .collapsible-header .form-actions {
-	width: 10%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	flex-wrap: wrap;
 	align-items: center;
+}
+
+.allJobs .collapsible-header .form-actions button {
+	margin: 0px 1rem;
 }
 
 .collapsible-header i {
