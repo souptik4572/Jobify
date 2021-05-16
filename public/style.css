@@ -80,8 +80,10 @@ body {
 }
 
 .auth .right {
-	display: grid;
-	place-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .auth .title {
@@ -179,7 +181,11 @@ body {
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-	margin: 5rem;
+	margin: 5rem auto;
+}
+
+.show-candidates .col {
+	margin: 0px auto;
 }
 
 .show .single-job {
