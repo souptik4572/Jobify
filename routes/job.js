@@ -47,7 +47,7 @@ router.post('/candidate/rejectedjobs/:id', isLoggedIn, createRejectedJob);
 
 router.delete('/candidate/rejectedjobs/:id', isLoggedIn, deleteRejectedJob);
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
 	if (req.user.isEmployer) res.redirect('/jobs/employer');
 	else res.redirect('/jobs/candidate/receivedjobs');
 });
