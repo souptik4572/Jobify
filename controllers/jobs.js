@@ -95,32 +95,42 @@ const createNewJob = (req, res) => {
 
 // Get all received jobs for a candidate
 const getReceivedJobs = (req, res) => {
-	Job.find({}, (error, jobs) => {
-		if (error) {
-			console.log('Oops got an error while fetching all jobs');
-			return;
+	Job.find(
+		{
+			$and: [
+				{
+					candidatesWhoAccepted: { $ne: req.user._id },
+				},
+				{
+					candidatesWhoRejected: { $ne: req.user._id },
+				},
+			],
+		},
+		(error, jobs) => {
+			if (error) {
+				console.log('Oops got an error while fetching all jobs');
+				return;
+			}
+			console.log(jobs);
+			res.render('CandidateDashboard', { jobs, fromPage: 'receivedJobs' });
 		}
-		const filteredJobs = jobs.filter(
-			(aJob) =>
-				!aJob.candidatesWhoAccepted.includes(req.user._id) &&
-				!aJob.candidatesWhoRejected.includes(req.user._id)
-		);
-		res.render('CandidateDashboard', { jobs: filteredJobs, fromPage: 'receivedJobs' });
-	});
+	);
 };
 
 // Get all accepted jobs for a candidate
 const getAcceptedJobs = (req, res) => {
-	Job.find({}, (error, jobs) => {
-		if (error) {
-			console.log('Oops got an error while fetching all jobs');
-			return;
+	Job.find(
+		{
+			candidatesWhoAccepted: { $eq: req.user._id },
+		},
+		(error, jobs) => {
+			if (error) {
+				console.log('Oops got an error while fetching all jobs');
+				return;
+			}
+			res.render('CandidateDashboard', { jobs, fromPage: 'acceptedJobs' });
 		}
-		const filteredJobs = jobs.filter((aJob) =>
-			aJob.candidatesWhoAccepted.includes(req.user._id)
-		);
-		res.render('CandidateDashboard', { jobs: filteredJobs, fromPage: 'acceptedJobs' });
-	});
+	);
 };
 
 // Mark a received job as accepted job
@@ -132,7 +142,7 @@ const createAcceptedJob = (req, res) => {
 			return;
 		}
 		job.candidatesWhoAccepted.push(req.user._id);
-		job.save((error, user) => {
+		job.save((error, job) => {
 			if (error) {
 				console.log('Oops got an error while saving job');
 				return;
@@ -151,7 +161,7 @@ const deleteAcceptedJob = (req, res) => {
 			return;
 		}
 		job.candidatesWhoAccepted.splice(job.candidatesWhoAccepted.indexOf(req.user._id), 1);
-		job.save((error, user) => {
+		job.save((error, job) => {
 			if (error) {
 				console.log('Oops got an error while saving job');
 				return;
@@ -163,16 +173,18 @@ const deleteAcceptedJob = (req, res) => {
 
 // Get all accepted jobs for a candidate
 const getRejectedJobs = (req, res) => {
-	Job.find({}, (error, jobs) => {
-		if (error) {
-			console.log('Oops got an error while fetching all jobs');
-			return;
+	Job.find(
+		{
+			candidatesWhoRejected: { $eq: req.user._id },
+		},
+		(error, jobs) => {
+			if (error) {
+				console.log('Oops got an error while fetching all jobs');
+				return;
+			}
+			res.render('CandidateDashboard', { jobs, fromPage: 'rejectedJobs' });
 		}
-		const filteredJobs = jobs.filter((aJob) =>
-			aJob.candidatesWhoRejected.includes(req.user._id)
-		);
-		res.render('CandidateDashboard', { jobs: filteredJobs, fromPage: 'rejectedJobs' });
-	});
+	);
 };
 
 // Mark a received job as rejected job
@@ -184,7 +196,7 @@ const createRejectedJob = (req, res) => {
 			return;
 		}
 		job.candidatesWhoRejected.push(req.user._id);
-		job.save((error, user) => {
+		job.save((error, job) => {
 			if (error) {
 				console.log('Oops got an error while saving user');
 				return;
@@ -203,7 +215,7 @@ const deleteRejectedJob = (req, res) => {
 			return;
 		}
 		job.candidatesWhoRejected.splice(job.candidatesWhoRejected.indexOf(req.user._id), 1);
-		job.save((error, user) => {
+		job.save((error, job) => {
 			if (error) {
 				console.log('Oops got an error while saving job');
 				return;
