@@ -8,9 +8,9 @@ const getRegisterForm = (req, res) => {
 
 // Create and register new user
 const registerUser = (req, res) => {
-	const { username, name, password, isEmployer } = req.body;
+	const { username, name, phoneNumber, password, isEmployer } = req.body;
 	User.register(
-		new User({ username, name, isEmployer: !!isEmployer }),
+		new User({ username, name, phoneNumber, isEmployer: !!isEmployer }),
 		password,
 		(error, user) => {
 			if (error) {
