@@ -171,7 +171,7 @@ const deleteAcceptedJob = (req, res) => {
 	});
 };
 
-// Get all accepted jobs for a candidate
+// Get all rejected jobs for a candidate
 const getRejectedJobs = (req, res) => {
 	Job.find(
 		{
