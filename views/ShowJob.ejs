@@ -36,13 +36,7 @@
 				>
 				<form action="/jobs/employer/<%= job._id %>?_method=DELETE" method="POST">
 					<button
-						class="
-							tooltipped
-							btn-floating btn-small
-							waves-effect waves-light
-							red
-							darken-1
-						"
+						class="tooltipped btn-floating btn-small waves-effect waves-light red darken-1"
 						data-position="bottom"
 						data-tooltip="Delete"
 					>
@@ -52,18 +46,27 @@
 			</div>
 		</div>
 	</div>
-	<!-- <div class="row">
-		<ul class="collection">
-			<li class="collection-item avatar">
-				<i class="material-icons circle">folder</i>
-				<span class="title">Title</span>
-				<p>
-					First Line <br />
-					Second Line
-				</p>
-				<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+	<div class="container">
+		<ul class="collapsible expandable">
+			<li>
+				<div class="collapsible-header center-align">
+					<h6 class="center-align">Interested Candidates</h6>
+				</div>
 			</li>
+			<% job.candidatesWhoAccepted.forEach((aCandidate, index) => { %>
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">arrow_drop_down_circle</i>
+					<span>Candidate #<%= index + 1 %> - <%= aCandidate.name %></span>
+				</div>
+				<div class="collapsible-body">
+					<p>Name - <%= aCandidate.name %></p>
+					<p>Email - <%= aCandidate.username %></p>
+					<p>Phone Number - <%= aCandidate.phoneNumber %></p>
+				</div>
+			</li>
+			<% }) %>
 		</ul>
-	</div> -->
+	</div>
 </div>
 <%- include('templates/footer.ejs') %>

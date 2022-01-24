@@ -23,6 +23,7 @@ const getParticularJob = (req, res) => {
 	Job.findById(id)
 		.populate('candidatesWhoAccepted')
 		.exec((error, job) => {
+			console.log(job);
 			if (error) {
 				console.log('Oops got an error while getting a particular job');
 				return;
