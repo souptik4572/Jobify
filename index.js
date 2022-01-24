@@ -3,6 +3,7 @@ const configureMongoose = require('./config/mongoose-config');
 const configurePassport = require('./config/passport-config');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
+const { saveLoggedInUser } = require('./middleware');
 
 // // Configuring our Mongo database with mongoose
 configureMongoose();
@@ -20,10 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
-app.use((req, res, next) => {
-	res.locals.currentUser = req.user;
-	next();
-});
+app.use(saveLoggedInUser);
 
 // All of our authentication routes
 app.use('/auth', authenticationRouter);
